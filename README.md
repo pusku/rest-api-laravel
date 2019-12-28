@@ -10,7 +10,6 @@ This Project is Docker ready.
 
 
 ### Installation
-
 no extra panic to install this project just run this command
 
 ```shell
@@ -22,7 +21,7 @@ to view author details run this command
 ```shell
 ./pusku about
 ```
-
+If you face any error to run this project from linux environment. Search winpty & -Xallow-non-tty  and remove. Now running the command again sould work fine.
 
 #### What contains with Docker?
 
