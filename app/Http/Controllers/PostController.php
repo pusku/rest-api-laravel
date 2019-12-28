@@ -4,26 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Validator;
+
 class PostController extends Controller{
 
-    //returns 
     public function index(){
 
-        return Post::all();
+        Post::query()->update([
+            'updated_at' => date('Y-m-d G:i:s')
+        ]);
+        return Post::get(['id', 'title','body', 'updated_at']);
     }
 
-    public function show(Post $post){
+    public function show($post){
+        $post = explode(",",$post);
+        Post::whereIn('id', $post)
+        ->update([
+            'updated_at' => date('Y-m-d G:i:s')
+        ]);
 
-        return $Post;
+        return Post::whereIn('id', $post)->get();
     }
 
     public function store(Request $request){
 
+        $input = $request->all();
         $validator = Validator::make($input, [
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255',
             'body' => 'required',
         ]);
-        
+
         $post = Post::create($request->all());
         return response()->json($post, 201);
     }

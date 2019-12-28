@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Post;
+use DateTime;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +27,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            // $date = new DateTime;
+            // $date->modify('-5 minutes');
+            // $formatted_date = $date->format('Y-m-d H:i:s');
+            Post::where('updated_at', '<=', Carbon::now()->subMinutes(5)->toDateTimeString())->delete();
+        })->everyMinute();
     }
 
     /**

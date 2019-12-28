@@ -1,0 +1,56 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "No command found"
+    exit
+fi
+
+if [ $1 == "build" ]; then
+    if [ -e .env ]
+    then
+        echo ".env is already exists"
+    else
+        echo "Making .env file ..."
+        cp .env.example .env
+    fi
+
+    source .env
+
+    if [ -e docker-compose.yml ]
+    then
+        echo "docker-compose.yml is already exists"
+    else
+        echo "Making docker-compose.yml file ..."
+        cp docker-compose.yml.example docker-compose.yml
+    fi
+
+    COMPOSE="docker-compose -f docker-compose.yml"
+
+    echo "Setting permission for docker/php/init.sh ..."
+    chmod a+x docker/php/init.sh
+
+    echo "Build and Run docker images ..."
+    $COMPOSE up -d --build
+
+    echo "Resolve dependencies ..."
+    winpty $COMPOSE exec app composer install
+
+    echo "Migrating database and run seed ..."
+    winpty $COMPOSE exec app php artisan cache:clear
+    winpty $COMPOSE exec app php artisan config:clear
+    winpty $COMPOSE exec app php artisan migrate --seed
+    winpty $COMPOSE exec app php artisan key:generate
+    while [ true ]
+    do
+        winpty -Xallow-non-tty $COMPOSE exec app php artisan schedule:run --verbose --no-interaction
+        sleep 60
+    done
+    echo "Rest APIs are ready to use"
+    echo "Thank you"
+fi
+
+if [ $1 == "about" ]; then
+    echo "Developed By - Rajon"
+    echo "Email - raahmansmail@gmail.com"
+    echo "Github Link - https://github.com/puskuuuu"
+fi

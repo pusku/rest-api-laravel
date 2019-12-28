@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -34,5 +35,4 @@ class UsersTableSeeder extends Seeder
                ]);
            }
        }
-    }
 }
