@@ -91,13 +91,3 @@ All of this Status code is set as required.
 ```shell
 composer test
 ```
-
-
-### Database Test
-- Q1 Answer:
-    - 
-
-- Q2 Answer
-    -
-- Q3 Answer
-    -
