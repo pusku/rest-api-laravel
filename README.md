@@ -37,5 +37,37 @@ to view author details run this command
 
 So you no need to Install PHP, no need to manage queue, task scheduler wil automatically run in background, worker and database system with auto migration and seeding.
 
-open browser and goto http://localhost:8088. 
+open browser and goto http://localhost:8112/. 
 
+
+#### Features
+- GET /values
+    - http://localhost:8112/api/posts
+    - return all values from the presistent store & will reset the TTL.
+
+- GET /values/key1,key2
+    - http://localhost:8112/api/posts/1,2,3
+    - return values that match the keys from the presistent store & will reset the TTL.
+
+- POST /values
+    - http://localhost:8112/api/posts
+    - store values.
+
+- PATCH /values
+    - http://localhost:8112/api/posts/1
+    - update values of which match the keys from the presistent store & will reset the TTL.
+
+- DELETE/values
+    - http://localhost:8112/api/posts/1
+    - delete values that match the keys from the presistent store.
+
+
+### Task Scheduler
+
+This task scheduler remove all values stored over more than 5 minutes
+
+```shell
+$schedule->call(function () {
+    Post::where('updated_at', '<=', Carbon::now()->subMinutes(5)->toDateTimeString())->delete();
+})->everyMinute();
+```

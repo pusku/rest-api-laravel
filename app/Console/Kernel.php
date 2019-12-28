@@ -28,9 +28,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            // $date = new DateTime;
-            // $date->modify('-5 minutes');
-            // $formatted_date = $date->format('Y-m-d H:i:s');
             Post::where('updated_at', '<=', Carbon::now()->subMinutes(5)->toDateTimeString())->delete();
         })->everyMinute();
     }
