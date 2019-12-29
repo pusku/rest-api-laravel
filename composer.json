@@ -9,9 +9,6 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "yohang88/letter-avatar": "^1.0",
-        "pusher/pusher-http-laravel": "^4.2",
-        "nahid/talk": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
