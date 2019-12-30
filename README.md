@@ -11,7 +11,7 @@ This Project is Docker ready.
 
 ### Installation
 no extra panic to install this project just run this command
-If you are running this command from windows Change end of line sequence from CRLF to LF for init.sh file
+- If you are running this command from windows Change end of line sequence from CRLF to LF for init.sh file
 ```shell
 docker/php/init.sh
 ```
