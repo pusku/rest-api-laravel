@@ -21,7 +21,8 @@ to view author details run this command
 ```shell
 ./pusku about
 ```
-If you face error ERROR: No container found for app_1. Chabge end of line sequence from CRLF to LF only for ```shell
+If you face error like - ERROR: No container found for app_1. Change end of line sequence from CRLF to LF only for 
+```shell
 docker/php/init.sh
 ```
 If you face any error to run this project from linux environment. Search winpty & -Xallow-non-tty  and remove. Now running the command again sould work fine.
