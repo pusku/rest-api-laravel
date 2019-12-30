@@ -11,6 +11,11 @@ This Project is Docker ready.
 
 ### Installation
 no extra panic to install this project just run this command
+If you are running this command from windows Change end of line sequence from CRLF to LF for init.sh file
+```shell
+docker/php/init.sh
+```
+- For More https://blog.hompus.nl/2018/01/24/docker-run-throws-exec-user-process-errors/
 
 ```shell
 ./pusku build
@@ -21,13 +26,8 @@ to view author details run this command
 ```shell
 ./pusku about
 ```
-If you face error like - ERROR: No container found for app_1. Change end of line sequence from CRLF to LF only for 
-```shell
-docker/php/init.sh
-```
-- For More https://blog.hompus.nl/2018/01/24/docker-run-throws-exec-user-process-errors/
 
-If you face any error to run this project from linux environment. Search winpty & -Xallow-non-tty and remove them from the file pusku which is located in root directory . Now running the command again sould work fine.
+If you are running this project from linux environment. Search winpty, -Xallow-non-tty and remove them from the file pusku which is located in the root directory . Now running the command again sould work fine.
 
 #### What contains with Docker?
 
