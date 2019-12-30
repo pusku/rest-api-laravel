@@ -25,7 +25,9 @@ If you face error like - ERROR: No container found for app_1. Change end of line
 ```shell
 docker/php/init.sh
 ```
-If you face any error to run this project from linux environment. Search winpty & -Xallow-non-tty  and remove. Now running the command again sould work fine.
+- For More https://blog.hompus.nl/2018/01/24/docker-run-throws-exec-user-process-errors/
+
+If you face any error to run this project from linux environment. Search winpty & -Xallow-non-tty and remove them from the file pusku which is located in root directory . Now running the command again sould work fine.
 
 #### What contains with Docker?
 
